@@ -1,3 +1,6 @@
+import addElem from './addElement.js';
+import Task from './classTask.js';
+
 const refreshList = (_class, _container) => {
     _container.innerHTML = '';
   
