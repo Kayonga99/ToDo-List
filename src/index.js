@@ -1,4 +1,5 @@
 import './index.css';
+
 const mainContainer = document.querySelector('.todo-list-container');
 
 const taskList = [
@@ -40,7 +41,7 @@ const addDataToDom = (tasks) => {
       isChecked = 'checked';
       strikeThrough = 'strike-through';
     }
-    
+
     mainContainer.innerHTML += `<div class="row">
     <input class="checkbox" type="checkbox" ${isChecked}>
     <p class="${strikeThrough}">${e.description}</p>
@@ -48,7 +49,6 @@ const addDataToDom = (tasks) => {
     </div>`;
   });
   mainContainer.innerHTML += '<button class="button">Clear all completed</button>';
-}
+};
 
-
-onload = () => {addDataToDom(taskList)}
+window.onload = () => { addDataToDom(taskList); };
