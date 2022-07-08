@@ -66,9 +66,6 @@ npx eslint .
 - Twitter: [@KayongaChiteta3](https://twitter.com/KayongaChiteta3?t=gfILCjmltzGRZOx6FZ8-nQ&s=08)
 - LinkedIn: [Kkayonga Chiteta](https://www.linkedin.com/in/kayonga-chiteta-776949227)
 
-## 🤝 Contributing
-
-
 ## Show your support
 
 Give a ⭐️ if you like this project!
