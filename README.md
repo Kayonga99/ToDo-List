@@ -43,7 +43,7 @@ http://localhost:3000
 ### Install
 
 Clone the repository
-https://github.com/ppmarq1/To-do-List.git
+https://github.com/Kayonga99/ToDo-List
 npm . init -y
 npm install
 
@@ -55,7 +55,7 @@ npx eslint .
 
 - Web Browser
 - [Visual Studio code](https://code.visualstudio.com/)
-[Live demo](https://kayonga99.github.io/ToDoList/)
+[Live demo]()
 ## Authors
 
 👤 ## Author
@@ -68,9 +68,6 @@ npx eslint .
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
-
-Feel free to check the [issues page](https://github.com/ppmarq1/To-do-List/issues).
 
 ## Show your support
 
