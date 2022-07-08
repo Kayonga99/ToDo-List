@@ -1,3 +1,6 @@
+import Task from './classTask.js';
+import isStorageAvailable from './localStorage.js';
+
 const storageName = 'taskList';
 
 export default class TaskList {
