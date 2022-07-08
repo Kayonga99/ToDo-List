@@ -4,33 +4,40 @@ import TaskList from './modules/classTaskList';
 import refreshList from './modules/refresh';
 
 const taskList = new TaskList();
-
+// dom
 const mainContainer = document.querySelector('.todo-list-container');
-
+// HTML skeleton
+// Header (Title and input)
 mainContainer.innerHTML = `<div class="row">
 <h1>Today's To Do</h1>
 <i class="fa-solid fa-rotate fa-lg font-awesome-icon"></i>
-</div>
-<div>
-<input placeholder="Add to your list...">
 </div>`;
+const inputContainer = addElem('form', [], mainContainer);
+const inputText = addElem('input', ['input-add-task'], inputContainer);
+inputText.setAttribute('placeholder', 'Add to your list...');
+addElem('i', ['fa-solid', 'fa-arrow-right-to-bracket', 'fa-sm', 'font-awesome-icon'], inputContainer);
+// Main (list)
 
-const addDataToDom = (tasks) => {
-  tasks.forEach((e) => {
-    let isChecked;
-    let strikeThrough;
-    if (e.completed === true) {
-      isChecked = 'checked';
-      strikeThrough = 'strike-through';
-    }
+const listContainer = addElem('div', [], mainContainer);
+// Bottom (button)
+const clearBtn = addElem('button', ['button'], mainContainer);
+clearBtn.textContent = 'Clear all completed';
 
-    mainContainer.innerHTML += `<div class="row">
-    <input class="checkbox" type="checkbox" ${isChecked}>
-    <p class="${strikeThrough}">${e.description}</p>
-    <i class="fa-solid fa-ellipsis-vertical fa-lg font-awesome-icon"></i>
-    </div>`;
-  });
-  mainContainer.innerHTML += '<button class="button">Clear all completed</button>';
+// Input
+inputContainer.onsubmit = (e) => {
+  e.preventDefault();
+  taskList.addTask(inputText.value);
+
+  inputContainer.reset();
+  refreshList(taskList, listContainer);
 };
 
-window.onload = () => { addDataToDom(taskList); };
+// clear button
+clearBtn.onclick = () => {
+  // console.log('clear');
+  taskList.clearCompleted();
+  refreshList(taskList, listContainer);
+};
+
+// On load
+refreshList(taskList, listContainer);
