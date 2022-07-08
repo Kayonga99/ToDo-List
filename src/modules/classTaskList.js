@@ -1,5 +1,6 @@
-import Task from './classTask.js';
-import isStorageAvailable from './localStorage.js';
+/*eslint-disable*/
+import Task from './classTask';
+import isStorageAvailable from './localStorage';
 
 const storageName = 'taskList';
 
@@ -9,6 +10,7 @@ export default class TaskList {
     this.id = 1;
     this.initUpdate();
   }
+
   initUpdate() {
     if (isStorageAvailable('localStorage')) {
       const data = JSON.parse(localStorage.getItem(storageName));
