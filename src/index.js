@@ -20,3 +20,5 @@ const taskList = [
     index: 3,
   },
 ]
+
+const mainContainer = document.querySelector(".todo-list-container")
