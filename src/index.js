@@ -1,4 +1,4 @@
-import "./index.css";
+import './index.css';
 
 const taskList = [
   {
@@ -21,9 +21,9 @@ const taskList = [
     completed: true,
     index: 3,
   },
-]
+];
 
-const mainContainer = document.querySelector(".todo-list-container")
+const mainContainer = document.querySelector('.todo-list-container');
 mainContainer.innerHTML = `<div class="row">
 <h1>Today's To Do</h1>
 <i class="fa-solid fa-rotate fa-lg font-awesome-icon"></i>
