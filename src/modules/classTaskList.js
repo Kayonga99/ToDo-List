@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import Task from './classTask';
 import isStorageAvailable from './localStorage';
 
