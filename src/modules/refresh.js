@@ -1,6 +1,5 @@
-/*eslint-disable*/
 import addElem from './addElement';
-import Task from './classTask';
+// import Task from './classTask';
 
 const refreshList = (_class, _container) => {
   _container.innerHTML = '';
@@ -30,6 +29,7 @@ const refreshList = (_class, _container) => {
         listIconDots.classList.add('hide');
         removeBtn.classList.remove('hide');
         todoList.style.backgroundColor = '#fffdcc';
+        listIconTrash.style.backgroundColor = '#F50000';
       } else {
         listIconDots.classList.remove('hide');
         removeBtn.classList.add('hide');
