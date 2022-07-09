@@ -34,7 +34,6 @@ inputContainer.onsubmit = (e) => {
 
 // clear button
 clearBtn.onclick = () => {
-  // console.log('clear');
   taskList.clearCompleted();
   refreshList(taskList, listContainer);
 };
