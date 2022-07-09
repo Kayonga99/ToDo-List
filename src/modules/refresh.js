@@ -1,5 +1,4 @@
 import addElem from './addElement';
-// import Task from './classTask';
 
 const refreshList = (_class, _container) => {
   _container.innerHTML = '';
