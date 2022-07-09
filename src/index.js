@@ -1,13 +1,54 @@
-import _ from 'lodash';
+import './index.css';
 
-function component() {
-  const element = document.createElement('div');
+const mainContainer = document.querySelector('.todo-list-container');
 
-  // Lodash, currently included via a script, is required for this line to work
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+const taskList = [
+  {
+    description: 'Shopping',
+    completed: false,
+    index: 0,
+  },
+  {
+    description: 'Study ES6 - Webpack',
+    completed: true,
+    index: 1,
+  },
+  {
+    description: 'Complete Awesome Books ES6',
+    completed: false,
+    index: 2,
+  },
+  {
+    description: 'Workout',
+    completed: true,
+    index: 3,
+  },
+];
 
-  return element;
-}
+mainContainer.innerHTML = `<div class="row">
+<h1>Today's To Do</h1>
+<i class="fa-solid fa-rotate fa-lg font-awesome-icon"></i>
+</div>
+<div>
+<input placeholder="Add to your list...">
+</div>`;
 
-document.body.appendChild(component());
+const addDataToDom = (tasks) => {
+  tasks.forEach((e) => {
+    let isChecked;
+    let strikeThrough;
+    if (e.completed === true) {
+      isChecked = 'checked';
+      strikeThrough = 'strike-through';
+    }
+
+    mainContainer.innerHTML += `<div class="row">
+    <input class="checkbox" type="checkbox" ${isChecked}>
+    <p class="${strikeThrough}">${e.description}</p>
+    <i class="fa-solid fa-ellipsis-vertical fa-lg font-awesome-icon"></i>
+    </div>`;
+  });
+  mainContainer.innerHTML += '<button class="button">Clear all completed</button>';
+};
+
+window.onload = () => { addDataToDom(taskList); };
