@@ -6,7 +6,7 @@ const refreshList = (_class, _container) => {
   _class.data.forEach((e) => {
     let isChecked;
     let strikeThrough;
-    if (e.completed === true) {
+    if (e.completed === true ) {
       isChecked = 'checked';
       strikeThrough = 'strike-through';
     }
