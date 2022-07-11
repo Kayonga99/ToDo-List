@@ -34,9 +34,11 @@ inputContainer.onsubmit = (e) => {
 
 // clear button
 clearBtn.onclick = () => {
-  // console.log('clear');
-  taskList.clearCompleted();
-  refreshList(taskList, listContainer);
+  const data = JSON.parse(localStorage.getItem('taskList'));
+
+  const newData = data.filter((task) => !task.completed === true);
+  localStorage.setItem('taskList', JSON.stringify(newData));
+  window.location.reload();
 };
 
 // On load
