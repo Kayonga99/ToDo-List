@@ -1,11 +1,11 @@
-import TaskList from '../modules/classTaskList';
-
+// import TaskList from '../modules/classTaskList';
+const TaskList = require('./classTaskList')
 describe('add and remove', () => {
   window.localStorage = Storage.prototype;
   test('addTask', () => {
     const todoList = new TaskList();
     todoList.addTask('Test');
-    expect(todoList.list).toHaveLength(1);
+    expect(todoList).toHaveLength(1);
 
     const storage = JSON.parse(localStorage.getItem('todo-list'));
     expect(storage).not.toBe(null);
