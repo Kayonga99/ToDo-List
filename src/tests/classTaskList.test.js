@@ -1,4 +1,4 @@
-// import TaskList from '../modules/classTaskList';
+import TaskList from '../modules/classTaskList';
 
 describe('add and remove', () => {
   window.localStorage = Storage.prototype;
