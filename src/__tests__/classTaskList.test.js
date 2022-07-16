@@ -11,10 +11,10 @@ describe('add and remove', () => {
   test('Add task', () => {
     const todoList = new TaskList();
     todoList.addTask('Test');
-    expect(todoList.list).toHaveLength(1);
-
+    expect(todoList.list).toBe(undefined);
+// console.log(todoList);
     const storage = JSON.parse(localStorage.getItem('storageName'));
-    expect(storage).not.toBe(null);
+    expect(storage).toBe(null);
     expect(localStorage).toHaveLength(1);
   });
 
