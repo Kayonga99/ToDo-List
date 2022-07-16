@@ -1,5 +1,10 @@
-// import TaskList from '../modules/classTaskList';
-const TaskList = require('./classTaskList')
+/**
+ * @jest-environment jsdom
+ */
+
+import TaskList from '../modules/classTaskList';
+// const TaskList = require('./classTaskList')
+
 describe('add and remove', () => {
   window.localStorage = Storage.prototype;
   test('addTask', () => {
