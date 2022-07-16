@@ -1,76 +1,133 @@
-import Task from './classTask';
-import isStorageAvailable from './localStorage';
-
-const storageName = 'taskList';
-
-export default class TaskList {
+class TaskList {
   constructor() {
-    this.data = [];
-    this.id = 1;
-    this.initUpdate();
+    this.list = JSON.parse(localStorage.getItem('todo-list'));
+    if (!this.list) {
+      this.list = [];
+    }
+    this.showList();
   }
 
-  initUpdate() {
-    if (isStorageAvailable('localStorage')) {
-      const data = JSON.parse(localStorage.getItem(storageName));
+  showList() {
+    this.saveData();
+    const listSection = document.querySelector('.items');
+    listSection.innerHTML = '';
+    this.list.forEach((activity) => {
+      let activityItem = `<li class ="d-flex s-between list-item" id ="item-data-${activity.index}"> `;
+      if (activity.completed) {
+        activityItem += `<span class="material-icons done update-status" data="${activity.index}">
+              done
+            </span>
+            <p contenteditable="true" class="completed activity" data="${activity.index}">
+              ${activity.description}
+            </p>
+            `;
+      } else {
+        activityItem += `
+            <span class="material-icons  update-status"  data="${activity.index}">
+              check_box_outline_blank
+            </span>
+            <p contenteditable="true" class="activity" data="${activity.index}">
+              ${activity.description}
+            </p>`;
+      }
+      activityItem += `
+          <span class="material-icons delete-activity" data="${activity.index}">
+            delete
+          </span>
+        </li>
+      `;
+      listSection.innerHTML += activityItem;
+    });
+    this.taskActions();
+  }
 
-      if (data && data.length !== 0) {
-        this.data = JSON.parse(localStorage.getItem(storageName));
+  saveData() {
+    for (let i = 0; i < this.list.length; i += 1) {
+      this.list[i].index = i;
+    }
+    this.list.sort((a, b) => {
+      if (a.index < b.index) {
+        return -1;
+      }
+      if (a.index > b.index) {
+        return 1;
+      }
+      return 0;
+    });
+    localStorage.setItem('todo-list', JSON.stringify(this.list));
+  }
 
-        const lastItem = this.data.reduce((prev, current) => {
-          const val = prev.id > current.id ? prev : current;
-          return val;
+  addTask(activity) {
+    if (activity.length > 0) {
+      const newActivity = {
+        description: activity,
+        completed: false,
+        index: this.list.length,
+      };
+      this.list.push(newActivity);
+      this.showList();
+      this.saveData();
+    }
+  }
+
+  deleteTask(index) {
+    this.list.splice(index, 1);
+    this.showList();
+  }
+
+  refresh() {
+    localStorage.clear();
+    this.list = [];
+    this.showList();
+  }
+
+  updateStatus(index) {
+    if (this.list[index].completed === true) {
+      this.list[index].completed = false;
+    } else if (this.list[index].completed === false) {
+      this.list[index].completed = true;
+    }
+    this.showList();
+  }
+
+  editTask(index, description) {
+    this.list[index].description = description;
+    this.saveData();
+  }
+
+  clearCompleted() {
+    this.list = this.list.filter((activity) => activity.completed === false);
+    this.showList();
+  }
+
+  taskActions() {
+    const deleteActivity = document.querySelectorAll('.delete-activity');
+    deleteActivity.forEach((activity) => {
+      activity.addEventListener('click', () => {
+        this.deleteTask(activity.getAttribute('data'));
+      });
+    });
+
+    const checkbox = document.querySelectorAll('.update-status');
+    if (checkbox !== null) {
+      checkbox.forEach((box) => {
+        box.addEventListener('click', () => {
+          this.updateStatus(box.getAttribute('data'));
         });
-        this.id = lastItem.id + 1;
-      }
+      });
     }
-  }
 
-  addTask(task) {
-    if (isStorageAvailable) {
-      const taskObj = new Task(task, this.id);
-
-      this.data.push(taskObj);
-      localStorage.setItem(storageName, JSON.stringify(this.data));
-
-      this.id += 1;
+    const editedTask = document.querySelectorAll('.activity');
+    if (editedTask) {
+      editedTask.forEach((activity) => {
+        activity.addEventListener('input', (e) => {
+          const description = e.target.innerText;
+          const index = e.target.getAttribute('data');
+          this.editTask(index, description);
+        });
+      });
     }
-  }
-
-  removeTask(taskID) {
-    this.data = this.data.filter((i) => i.id !== taskID);
-    this.resetIds();
-    localStorage.setItem(storageName, JSON.stringify(this.data));
-  }
-
-  updateStatus(taskID, status) {
-    this.data = this.data.map((obj) => {
-      if (obj.id === taskID) {
-        return { ...obj, completed: status };
-      }
-
-      return obj;
-    });
-    localStorage.setItem(storageName, JSON.stringify(this.data));
-  }
-
-  renameTask(taskID, newTask) {
-    this.data = this.data.map((obj) => {
-      if (obj.id === taskID) {
-        return { ...obj, description: newTask };
-      }
-
-      return obj;
-    });
-    localStorage.setItem(storageName, JSON.stringify(this.data));
-  }
-
-  resetIds() {
-    let i = 1;
-    this.data.forEach((e) => {
-      e.id = i;
-      i += 1;
-    });
-    this.id = i;
   }
 }
+
+export default TaskList;
