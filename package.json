@@ -29,6 +29,7 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.0",
     "jest-environment-jsdom": "^28.1.3",
     "lodash": "^4.17.21",
     "style-loader": "^3.3.1"
