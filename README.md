@@ -54,7 +54,7 @@ npx eslint .
 
 - Web Browser
 - [Visual Studio code](https://code.visualstudio.com/)
-[Live demo](https://tiny-swan-e24fe0.netlify.app/)
+- [Live demo](https://chimerical-brigadeiros-f435c0.netlify.app/)
 ## Authors
 
 👤 ## Author
