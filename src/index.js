@@ -1,9 +1,9 @@
 import './style.css';
-import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
+import '../node_modules/@fortawesome/fontawesome-free/js/all';
 import {
   addTask, removeTask, editTask, setLocalStore,
-} from './functionality.js';
-import isCompleted from './check.js';
+} from './functionality';
+import isCompleted from './check';
 
 const todoHTML = document.querySelector('.todo_list');
 const todoInput = document.querySelector('.todo_input');

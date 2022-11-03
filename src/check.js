@@ -1,4 +1,4 @@
-import { setLocalStore } from './functionality.js';
+import { setLocalStore } from './functionality';
 
 const isCompleted = (complete, input, i, todoList) => {
   if (complete) {
